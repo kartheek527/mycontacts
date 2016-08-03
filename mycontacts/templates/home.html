@@ -3,8 +3,8 @@
 {% block content %}
 
       <div class="jumbotron">
-        <h2>My contacts</h2>
-        <p>Its another app to maintain personal contacts.</p>
+        <h2>Hello {{request.user.username}}</h2>
+        <p>Its another app to maintain your personal contacts.</p>
         <p><a href="{% url 'new_contact' %}" class="btn btn-primary btn-lg" >Add new</a></p>
       </div>
 
