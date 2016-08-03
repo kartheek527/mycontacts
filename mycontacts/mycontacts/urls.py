@@ -15,14 +15,27 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.views.generic import TemplateView
-from connection import views
+from django.views.generic import TemplateView, ListView
+from connection import views, models
 from django.contrib.auth.views import logout
 
 urlpatterns = [
+    url(r'^$', TemplateView.as_view(template_name='login.html')),
     url(r'^auth/', include('social.apps.django_app.urls', namespace='social')),
     url(r'^admin/', admin.site.urls),
-    url(r'^$', TemplateView.as_view(template_name="login.html")),
-    url(r'^accounts/profile/$', views.home),
-    url(r'^logout/$', logout, {'template_name': 'index.html', 'next_page': '/'}, name='log_out'),
+    url(r'^logout/$', logout, {'template_name': 'index.html', 'next_page': '/'},
+        name='log_out'),
+    # Below urls for CRUD operation.
+    url(r'^accounts/profile/$', views.home, name = 'contact_list'),
+    url(r'^save_contact/$', views.save_contact, name = 'new_contact'),
+    url(r'^update_contact/(?P<pk>\d+)$', views.update_contact, name='update_contact'),
+    url(r'^delete_contact/(?P<pk>\d+)$', views.delete_contact, name='delete_contact'),
+
+    # Using generic Listview in url itself
+    #
+    # url(r'^accounts/profile/$', ListView.as_view(
+    #                 model=models.Contact,
+    #                 queryset=models.Contact.objects.filter(admin = request.user),
+    #                 context_object_name="contacts",
+    #                 template_name='home.html'), name="contact_list"),
 ]
