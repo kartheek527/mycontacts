@@ -16,10 +16,13 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic import TemplateView
+from connection import views
+from django.contrib.auth.views import logout
 
 urlpatterns = [
-    url('', include('social.apps.django_app.urls', namespace='social')),
+    url(r'^auth/', include('social.apps.django_app.urls', namespace='social')),
     url(r'^admin/', admin.site.urls),
-    url(r'^login$', TemplateView.as_view(template_name="login.html")),
-    url(r'^home$', TemplateView.as_view(template_name="home.html")),
+    url(r'^$', TemplateView.as_view(template_name="login.html")),
+    url(r'^accounts/profile/$', views.home),
+    url(r'^logout/$', logout, {'template_name': 'index.html', 'next_page': '/'}, name='log_out'),
 ]

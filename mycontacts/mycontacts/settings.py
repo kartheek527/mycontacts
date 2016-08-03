@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social.apps.django_app.default',
+    'connection'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -127,6 +128,7 @@ SOCIAL_AUTH_PIPELINE = (
    'social.pipeline.social_auth.social_uid',
    'social.pipeline.social_auth.auth_allowed',
    'social.pipeline.social_auth.social_user',
+   'social.pipeline.user.get_username',
    'social.pipeline.user.create_user',
    'social.pipeline.social_auth.associate_user',
    'social.pipeline.social_auth.load_extra_data',
@@ -134,8 +136,8 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 # Google oAuth2
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ""
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ""
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "305242957966-d1hbnrqn53e9vl30f83a33v8pqrma8ok.apps.googleusercontent.com"
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "U_PSJbv33IME1-YvkcEjqiDq"
 
 
 AUTHENTICATION_BACKENDS = [
