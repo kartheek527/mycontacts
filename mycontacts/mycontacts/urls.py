@@ -35,7 +35,7 @@ urlpatterns = [
     #
     # url(r'^accounts/profile/$', ListView.as_view(
     #                 model=models.Contact,
-    #                 queryset=models.Contact.objects.filter(admin = request.user),
+    #                 queryset=models.Contact.objects.all(),
     #                 context_object_name="contacts",
     #                 template_name='home.html'), name="contact_list"),
 ]
